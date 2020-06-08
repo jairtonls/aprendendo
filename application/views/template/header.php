@@ -46,7 +46,7 @@
           <img src="<?= base_url()?>uploads/35610ca38cb1e30a3e20ad53b76afe8e.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Jairton Lemos</a>
         </div>
       </div>
 
