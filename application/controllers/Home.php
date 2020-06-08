@@ -12,9 +12,9 @@ class Home extends CI_Controller {
 	public function index(){
 		$dados['titulo'] = "teste - Codeigneter"; 
 		// visualização
+		$this->load->view('template/head', $dados);
 		$this->load->view('template/header', $dados);
-		$this->load->view('template/navbar', $dados);
-		$this->load->view('template/right_navbar_links', $dados);	
+		$this->load->view('template/footer', $dados);	
 	}
 	public function tabela_produto(){
 		// dados da tabela 
