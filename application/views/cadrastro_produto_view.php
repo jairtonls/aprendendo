@@ -95,3 +95,8 @@
 	</section>
 	<!-- /.content -->
 </div>
+<script type="text/javascript">
+$(document).ready(function () {
+  bsCustomFileInput.init();
+});
+</script>

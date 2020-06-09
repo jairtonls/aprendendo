@@ -10,4 +10,5 @@
 	<script type="text/javascript" src="<?= base_url()?>assets/js/jquery.js"></script>
 	<script type="text/javascript" src="<?= base_url()?>assets/js/adminlte.js"></script>
 	<script type="text/javascript" src="<?= base_url()?>assets/js/all.js"></script>
+	<script type="text/javascript" src="<?= base_url()?>assets/js/custom-file-input.min.js"></script>
 </head>
