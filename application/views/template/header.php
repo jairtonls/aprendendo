@@ -1,3 +1,9 @@
+<?php
+// isso é temporario é so enquanto eu estudo as livrarias que o codeigniter pode me oferecer
+  foreach ($_SESSION['usuario_logado'] as $sessao) {
+      $nome_usuario = $sessao['nome'];
+  }
+?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
@@ -46,7 +52,7 @@
           <img src="<?= base_url()?>uploads/35610ca38cb1e30a3e20ad53b76afe8e.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"><?= $nome_usuario ?></a>
         </div>
       </div>
 

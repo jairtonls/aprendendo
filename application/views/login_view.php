@@ -21,7 +21,7 @@
 		background: #333 !important;
 	}
 	.user_card {
-		height: 400px;
+		height: 500px;
 		width: 350px;
 		margin-top: auto;
 		margin-bottom: auto;
@@ -99,17 +99,20 @@
 				</div>
 				<div class="d-flex justify-content-center form_container">
 					<form action="<?= base_url()?>login/login" method="POST">
+						<?php if(validation_errors()): ?>
+							<div class="alert alert-danger"><?= validation_errors(); ?></div>
+						<?php endif; ?>
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="login" class="form-control input_user" value="" placeholder="login" required="">
+							<input type="text" name="login" class="form-control input_user" value="" placeholder="login">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="senha" class="form-control input_pass" value="" placeholder="senha" required="">
+							<input type="password" name="senha" class="form-control input_pass" value="" placeholder="senha">
 						</div>
 						<div class="d-flex justify-content-center mt-3 login_container">
 							<button type="subbmit" name="button" class="btn login_btn">Login</button>

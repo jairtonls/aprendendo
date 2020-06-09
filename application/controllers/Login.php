@@ -20,6 +20,21 @@ class Login extends CI_Controller {
 		$this->load->view('cadrastro_usuario_view', $dados);
 	}
 	public function login(){
+		//validação
+		$this->load->library('form_validation');
+		$this->form_validation->set_message('requerd', 'campo %s é obrigatorio');
+		$this->form_validation->set_rules('login', 'Login ou email', 'trim|required|min_length[5]|max_length[50]|callback_check_database');
+		$this->form_validation->set_rules('senha', 'senha', 'trim|required|max_length[20]|callback_check_database');
+		// condição
+		if($this->form_validation->run() == FALSE){
+			$this->session->set_userdata('usuario_logado', "");
+			$this->session->sess_destroy();
+			$this->load->view('login_view');
+		}else{
+			redirect('Home','refresh');
+		}
+	}
+	public function check_database(){
 		// recebendo dados do formulario
 		$login  = $this->input->post("login");
 		$senha = $this->input->post("senha");
@@ -34,14 +49,13 @@ class Login extends CI_Controller {
 		$query = $this->database_model->ler($tabela_nome,$tabela_select,$tabela_where);
 		//se a vairial query for TRUE entao criara uma sesao
 		if(!$query){
-			$this->session->set_userdata('usuario_logado', "");
-			$this->session->sess_destroy();
-			redirect('Login','refresh');
+			$this->form_validation->set_message('check_database', 'O campo %s não existe ou nao foi cadrastrado');
+			return FALSE;
 		}else{
-			// isso é apenas temporario depoistenho que cria uma pagina de erros 
 			$this->session->set_userdata('usuario_logado',$query);
-			redirect('Home','refresh');
+			return TRUE;
 		}
+
 	}
 	public function cadastra(){
 		//recebendo dados do formulario
@@ -109,5 +123,4 @@ class Login extends CI_Controller {
 			echo "success";
 		}
 	}
-
 }
