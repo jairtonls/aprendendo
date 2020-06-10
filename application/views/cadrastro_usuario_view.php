@@ -21,7 +21,7 @@
 		background: #333 !important;
 	}
 	.user_card {
-		height: 500px;
+		height: 600px;
 		width: 350px;
 		margin-top: auto;
 		margin-bottom: auto;
@@ -99,11 +99,20 @@
 				</div>
 				<div class="d-flex justify-content-center form_container">
 					<form action="<?= base_url()?>Login/cadastra" method="POST">
+						<?php if(validation_errors()): ?>
+							<div class="alert alert-danger"><?= validation_errors(); ?></div>
+						<?php endif; ?>
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="login" class="form-control input_user" value="" placeholder="Digite o login" required="">
+							<input type="text" name="nome" class="form-control input_user" value="" placeholder="digite seu nome" required="">
+						</div>
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							<input type="text" name="login" class="form-control input_user" value="" placeholder="digite o login" required="">
 						</div>
 						<div class="input-group mb-3">
 							<div class="input-group-append">

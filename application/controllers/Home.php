@@ -11,9 +11,6 @@ class Home extends CI_Controller {
 
 	public function index(){
 		$dados['titulo'] = "teste - Codeigneter"; 
-		foreach ($_SESSION['usuario_logado'] as $sessao) {
-			$dados['nome_usuario'] = $sessao['nome'];
-		}
 		// visualização
 		$this->load->view('template/head', $dados);
 		$this->load->view('template/header', $dados);
