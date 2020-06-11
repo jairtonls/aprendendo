@@ -16,8 +16,9 @@
 			</div>
 		</div><!-- /.container-fluid -->
 	</section>
-
-	<!-- Main content -->
+	<?php if(validation_errors()): ?>
+		<div class="alert alert-danger"><?= validation_errors(); ?></div>
+	<?php endif; ?>	<!-- Main content -->
 	<section class="content">
 		<div class="container-fluid">
 			<div class="row">
@@ -30,14 +31,19 @@
 						</div>
 						<!-- /.card-header -->
 						<!-- form start -->
-						<form>
+						<form action="<?= base_url()?>produto/cad_produto" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
 							<div class="card-body">
 								<div class="form-row">
-									<div class="form-group col-md-12">
+									<div class="col-md-3">
+									    <a href="#" class="thumbnail">
+									      <img src="<?= base_url()?>uploads/padrao.jpg" height="190" width="150" id="foto-cliente">
+									    </a>
+								  	</div>
+									<div class="form-group col-md-9" style="margin: auto;">
 										<label for="exampleInputFile">Enviar imagem</label>
 										<div class="input-group">
-											<div class="custom-file">
-												<input type="file" class="custom-file-input" id="exampleInputFile" name="img">
+											<div class="custom-file" >
+												<input type="file" id="foto" class="custom-file-input" id="exampleInputFile" name="up_foto" >
 												<label class="custom-file-label" for="exampleInputFile">Click aqui para enviar a imagem do produto</label>
 											</div>
 											<div class="input-group-append">
@@ -51,32 +57,32 @@
 									</div>
 									<div class="form-group col-md-3">
 										<label for="inputPassword4">Unidade</label>
-										<input type="text" class="form-control" id="inputPassword4" placeholder="informe quantas unidades do produto">
+										<input type="text" class="form-control" id="inputPassword4" placeholder="informe quantas unidades do produto" name="unidade">
 									</div>
 									<div class="form-group col-md-3">
 										<label for="inputAddress">Valor da mercadoria</label>
-										<input type="text" class="form-control" id="inputAddress" placeholder="Valalor da mercadoria">
+										<input type="text" class="form-control" id="inputAddress" placeholder="Valalor da mercadoria" name="valormercadoria">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="inputAddress2">valor venda</label>
-										<input type="text" class="form-control" id="inputAddress2" placeholder="valor venda">
+										<input type="text" class="form-control" id="inputAddress2" placeholder="valor venda" name="valorvenda">
 									</div>
-										<div class="form-group col-md-4">
-											<label for="inputCity">Quantidade no estoque</label>
-											<input type="text" class="form-control" id="inputCity" placeholder="Quantidade no estoque">
-										</div>
-										<div class="form-group col-md-4">
-											<label for="inputState">Desconto permitido</label>
-											<select id="inputState" class="form-control">
-												<option selected>0</option>
-												<option>...</option>
-											</select>
-										</div>
-										<div class="form-group col-md-12">
+									<div class="form-group col-md-4">
+										<label for="inputCity">Quantidade no estoque</label>
+										<input type="text" class="form-control" id="inputCity" placeholder="Quantidade no estoque" name="qtdeestoque">
+									</div>
+									<div class="form-group col-md-4">
+										<label for="inputState">Desconto</label>
+										<select id="inputState" class="form-control" name="descontopermitido">
+											<option selected>0</option>
+											<option>...</option>
+										</select>
+									</div>
+									<div class="form-group col-md-12">
 										<label for="inputEmail4">Descrição do produto</label>
-										<textarea name="DescricaoP" id="" cols="30" rows="10" class="form-control"></textarea>
+										<textarea name="descricaoproduto" id="" cols="30" rows="8" class="form-control" ></textarea>
 									</div>
-									</div>
+								</div>
 								<button type="submit" class="btn btn-primary">Salva</button>
 							</div>
 						</form>
@@ -95,8 +101,9 @@
 	</section>
 	<!-- /.content -->
 </div>
+<script type="text/javascript" src="<?= base_url()?>assets/js/custom-upload.js"></script>
 <script type="text/javascript">
-$(document).ready(function () {
-  bsCustomFileInput.init();
-});
+	$(document).ready(function () {
+		bsCustomFileInput.init();
+	});
 </script>
