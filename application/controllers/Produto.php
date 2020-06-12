@@ -12,9 +12,16 @@ class Produto extends CI_Controller {
 		$this->load->library('upload');
 		$this->load->library('form_validation');
 	}
-
 	public function index(){
-		$dados['titulo'] = "teste - Codeigneter"; 
+		$dados['titulo'] = "teste - Codeigneter";
+		// dados da tabela 
+		$tabela_nome  = "produto";
+		$tabela_select = "*";
+		$tabela_where = "";
+		// model
+		$this->load->model("database_model");
+		// conteudo do site
+		$dados['produtos'] = $this->database_model->ler($tabela_nome,$tabela_select,$tabela_where);
 		// visualização
 		$this->load->view('template/head', $dados);
 		$this->load->view('template/header', $dados);
@@ -67,19 +74,8 @@ class Produto extends CI_Controller {
 			$this->load->model("database_model");
 			$this->database_model->inserir("produto", $cadrastro_produto);
 			// redirecinar para
-			$this->index();
+			redirect('Produto','refresh');
 		}
 
 	} 
-	public function tabela_produto(){
-		// dados da tabela 
-		$tabela_nome  = "produto";
-		$tabela_select = "*";
-		$tabela_where = "";
-		// model
-		$this->load->model("database_model");
-		// conteudo do site
-		$dados['produtos'] = $this->database_model->ler($tabela_nome,$tabela_select,$tabela_where);
-		$dados['titulo'] = "aprendendo - codeigneter";
-	}
 }
