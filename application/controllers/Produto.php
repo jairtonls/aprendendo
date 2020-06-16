@@ -26,6 +26,7 @@ class Produto extends CI_Controller {
 		$this->load->view('template/head', $dados);
 		$this->load->view('template/header', $dados);
 		$this->load->view('cadrastro_produto_view', $dados);
+		$this->load->view('tabela_produto', $dados);
 		$this->load->view('template/footer', $dados);	
 	}
 	public function cad_produto(){
@@ -76,6 +77,8 @@ class Produto extends CI_Controller {
 			// redirecinar para
 			redirect('Produto','refresh');
 		}
-
 	} 
+	public function produto_edit(){
+		echo $this->uri->segment(3);
+	}
 }
