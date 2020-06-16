@@ -14,6 +14,8 @@ class Produto extends CI_Controller {
 	}
 	public function index(){
 		$dados['titulo'] = "teste - Codeigneter";
+		$dados['card_titulo'] = "cadrastra produto";
+
 		// dados da tabela 
 		$tabela_nome  = "produto";
 		$tabela_select = "*";
@@ -27,6 +29,19 @@ class Produto extends CI_Controller {
 		$this->load->view('template/header', $dados);
 		$this->load->view('cadrastro_produto_view', $dados);
 		$this->load->view('tabela_produto', $dados);
+		$this->load->view('template/footer', $dados);	
+	}
+	public function produto_edit(){
+		$dados['titulo'] = "teste - Codeigneter";
+		$dados['card_titulo'] = "editar produto";
+		//dados da tabela
+		$dados['id'] = $id = $this->uri->segment(3);
+		$this->load->model("database_model");
+		$dados['produto_edit'] = $this->database_model->procurar("produto", "*","id={$id}");
+		// visualização
+		$this->load->view('template/head', $dados);
+		$this->load->view('template/header', $dados);
+		$this->load->view('cadrastro_produto_view', $dados);
 		$this->load->view('template/footer', $dados);	
 	}
 	public function cad_produto(){
@@ -78,7 +93,21 @@ class Produto extends CI_Controller {
 			redirect('Produto','refresh');
 		}
 	} 
-	public function produto_edit(){
-		echo $this->uri->segment(3);
+	public function edit_produto(){
+		$editar_produto = array(
+			"id"				=> $this->input->post("id"),
+			"nomeproduto"		=> $this->input->post("nomeproduto"),
+			"unidade"			=> $this->input->post("unidade"),
+			"valormercadoria"	=> $this->input->post("valormercadoria"),
+			"valorvenda"		=> $this->input->post("valorvenda"),
+			"qtdeestoque"		=> $this->input->post("qtdeestoque"),
+			"descontopermitido"	=> $this->input->post("descontopermitido"),
+			"descricaoproduto"	=> $this->input->post("descricaoproduto")
+		);
+		var_dump($editar_produto);
+		// chamndo da model do programa
+			$this->load->model("database_model");
+			$this->database_model->editar("produto", $editar_produto, $editar_produto['id']);
+
 	}
 }

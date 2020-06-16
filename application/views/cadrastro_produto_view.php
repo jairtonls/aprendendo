@@ -1,10 +1,9 @@
-
-	<!-- Content Header (Page header) -->
+<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Cadrastra produto</h1>
+					<h1><?=$card_titulo ?></h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -26,7 +25,7 @@
 					<!-- jquery validation -->
 					<div class="card card-primary">
 						<div class="card-header">
-							<h3 class="card-title">Cadrastrar produto</h3>
+							<h3 class="card-title"><?=$card_titulo ?></h3>
 							<div class="card-tools">
 								<!-- Collapse Button -->
 								<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -36,7 +35,12 @@
 						
 						<div class="card-body">
 							<!-- form start -->
+							<?php if (!isset($id)) :?>
 							<form action="<?= base_url()?>produto/cad_produto" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+							<?php else: ?>
+							<form action="<?= base_url()?>produto/edit_produto" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+							<?php endif; ?>
+
 								<div class="form-row">
 									<div class="col-md-3">
 										<a href="#" class="thumbnail">
@@ -57,36 +61,38 @@
 									</div>
 									<div class="form-group col-md-6">
 										<label for="inputEmail4">Nome do produto</label>
-										<input type="text" class="form-control" id="inputEmail4" placeholder="Informe o nome do produto" name="nomeproduto">
+										<input type="text" class="form-control" id="inputEmail4" placeholder="Informe o nome do produto" name="nomeproduto" value="<?= isset($id) ? $produto_edit['nomeproduto'] : ""?>">
 									</div>
 									<div class="form-group col-md-3">
 										<label for="inputPassword4">Unidade</label>
-										<input type="text" class="form-control" id="inputPassword4" placeholder="informe quantas unidades do produto" name="unidade">
+										<input type="text" class="form-control" id="inputPassword4" placeholder="informe quantas unidades do produto" name="unidade" value="<?= isset($id) ? $produto_edit['unidade'] : ""?>">
 									</div>
 									<div class="form-group col-md-3">
 										<label for="inputAddress">Valor da mercadoria</label>
-										<input type="text" class="form-control" id="inputAddress" placeholder="Valalor da mercadoria" name="valormercadoria">
+										<input type="text" class="form-control" id="inputAddress" placeholder="Valalor da mercadoria" name="valormercadoria" value="<?= isset($id) ? $produto_edit['valormercadoria'] : ""?>">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="inputAddress2">valor venda</label>
-										<input type="text" class="form-control" id="inputAddress2" placeholder="valor venda" name="valorvenda">
+										<input type="text" class="form-control" id="inputAddress2" placeholder="valor venda" name="valorvenda" value="<?= isset($id) ? $produto_edit['valorvenda'] : ""?>">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="inputCity">Quantidade no estoque</label>
-										<input type="text" class="form-control" id="inputCity" placeholder="Quantidade no estoque" name="qtdeestoque">
+										<input type="text" class="form-control" id="inputCity" placeholder="Quantidade no estoque" name="qtdeestoque" value="<?= isset($id) ? $produto_edit['qtdeestoque'] : ""?>">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="inputState">Desconto</label>
 										<select id="inputState" class="form-control" name="descontopermitido">
-											<option selected>0</option>
+											<option selected><?= isset($id) ? $produto_edit['descontopermitido'] : ""?></option>
 											<option>...</option>
 										</select>
 									</div>
 									<div class="form-group col-md-12">
 										<label for="inputEmail4">Descrição do produto</label>
-										<textarea name="descricaoproduto" id="" cols="30" rows="8" class="form-control" ></textarea>
+										<textarea class="form-control" name="descricaoproduto" id="exampleFormControlTextarea3" rows="8"><?= isset($id) ? $produto_edit['descricaoproduto'] : ""?></textarea>
 									</div>
 								</div>
+								<!-- isso aqui e para pegar o id nao consegui pensar numa maneira melhor para resolver isso apesar de saber que deve existir -->
+								<input type="hidden" name="id" value="<?= isset($id) ? $produto_edit['id'] : ""?>">
 								<button type="submit" class="btn btn-primary">Salva</button>
 							</div>
 						</form>

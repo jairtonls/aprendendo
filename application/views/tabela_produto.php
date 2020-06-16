@@ -18,6 +18,7 @@
 								<thead>
 									<tr>
 										<th></th>
+										<th></th>
 										<th>foto</th>
 										<th>nome</th>
 										<th>unidade</th>
@@ -31,9 +32,10 @@
 								<tbody>
 									<?php foreach ($produtos as $produto):?>
 										<tr>
+											<td></td>
 											<td>
 												<a href="<?=base_url()?>produto/produto_edit/<?=$produto['id']?>"><i class="fas fa-edit"></i></a>
-												<a href="#"><i class="fas fa-trash"></i></a>
+												<a href="javascript:deletardatabase()"><i class="fas fa-trash"></i></a>
 											</td>
 											<td><img src="<?=base_url()?>/uploads/<?=$produto['img']?>" alt="img" height="100" width="90"></td>
 											<td><?=$produto['nomeproduto']?></td>
@@ -55,6 +57,7 @@
 			</div>
 		</div>
 	</section>
+
 	<!-- DataTables -->
 <link rel="stylesheet" type="text/css" href="<?= base_url()?>assets/css/tabela/dataTables.bootstrap4.css">
 <link rel="stylesheet" type="text/css" href="<?= base_url()?>assets/css/tabela/responsive.bootstrap4.css">
@@ -70,4 +73,7 @@
 			"autoWidth": false,
 		});
 	});
+	function deletardatabase(){
+		alert("ola mundo");
+	}
 </script>

@@ -42,4 +42,13 @@ class Database_model extends CI_Model {
 		return $this->db->delete();
 
 	}
+	public function procurar($tabela_nome,$tabela_select="*",$tabela_where){
+		if($tabela_where !=null){
+			$this->db->where($tabela_where);
+		}
+		$this->db->select($tabela_select);
+	    $this->db->from($tabela_nome);
+	    $query = $this->db->get();
+	    return $query->row_array(); 
+	}
 }
