@@ -94,6 +94,13 @@ class Produto extends CI_Controller {
 		}
 	} 
 	public function edit_produto(){
+		$this->form_validation->set_rules('nomeproduto', 'nome do produto', 'trim|required|min_length[5]|max_length[50]');
+		$this->form_validation->set_rules('unidade', 'quantidade de unidade', 'trim|required|numeric');
+		$this->form_validation->set_rules('valormercadoria', 'valor da mercadoria', 'trim|required|numeric');
+		$this->form_validation->set_rules('valorvenda', 'valor de venda', 'trim|required|numeric');
+		$this->form_validation->set_rules('qtdeestoque', 'quantidade do estoque', 'trim|required|numeric');
+		$this->form_validation->set_rules('descontopermitido', 'desconto', 'trim|required|numeric');
+		$this->form_validation->set_rules('descricaoproduto', 'descricao do produto', 'trim|required|min_length[5]|max_length[250]');
 		$editar_produto = array(
 			"id"				=> $this->input->post("id"),
 			"nomeproduto"		=> $this->input->post("nomeproduto"),
@@ -108,6 +115,12 @@ class Produto extends CI_Controller {
 		// chamndo da model do programa
 			$this->load->model("database_model");
 			$this->database_model->editar("produto", $editar_produto, $editar_produto['id']);
-
+	}
+	public function produto_delit(){
+		$id = $this->uri->segment(3);
+		$this->load->model("database_model");
+		$this->database_model->deletar("produto", "id={$id}");
+		// redirecionar
+		redirect('produto','refresh');
 	}
 }

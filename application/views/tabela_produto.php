@@ -35,7 +35,7 @@
 											<td></td>
 											<td>
 												<a href="<?=base_url()?>produto/produto_edit/<?=$produto['id']?>"><i class="fas fa-edit"></i></a>
-												<a href="javascript:deletardatabase()"><i class="fas fa-trash"></i></a>
+												<a href="javascript:deletardatabase(<?=$produto['id'] ?>)"><i class="fas fa-trash"></i></a>
 											</td>
 											<td><img src="<?=base_url()?>/uploads/<?=$produto['img']?>" alt="img" height="100" width="90"></td>
 											<td><?=$produto['nomeproduto']?></td>
@@ -57,8 +57,7 @@
 			</div>
 		</div>
 	</section>
-
-	<!-- DataTables -->
+<!-- DataTables -->
 <link rel="stylesheet" type="text/css" href="<?= base_url()?>assets/css/tabela/dataTables.bootstrap4.css">
 <link rel="stylesheet" type="text/css" href="<?= base_url()?>assets/css/tabela/responsive.bootstrap4.css">
 <!-- DataTables -->
@@ -73,7 +72,12 @@
 			"autoWidth": false,
 		});
 	});
-	function deletardatabase(){
-		alert("ola mundo");
+	function deletardatabase(id) {
+		if(confirm("voce deseja realmente excluir este arquivo")){
+			window.location.href = 'produto_delit/'+id;
+		}else{
+			alert("registro nao excluido");
+			return false;
+		}
 	}
 </script>

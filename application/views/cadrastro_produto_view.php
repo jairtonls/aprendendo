@@ -82,7 +82,7 @@
 									<div class="form-group col-md-4">
 										<label for="inputState">Desconto</label>
 										<select id="inputState" class="form-control" name="descontopermitido">
-											<option selected><?= isset($id) ? $produto_edit['descontopermitido'] : ""?></option>
+											<option selected><?= isset($id) ? $produto_edit['descontopermitido'] : "0"?></option>
 											<option>...</option>
 										</select>
 									</div>
